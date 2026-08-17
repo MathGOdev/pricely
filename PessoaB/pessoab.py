@@ -1,4 +1,5 @@
 import sqlite3
+import json
 
 conexao = sqlite3.connect("precos.db")
 cursor = conexao.cursor()
@@ -26,11 +27,7 @@ def inserir_preco(dado):
 print("Banco de dados conectado.")
 print("Tabela 'precos' pronta para uso.")
 
-# Teste - simula o que a Pessoa A vai entregar
-dado_teste = {
-    "produto": "Notebook Dell",
-    "preco": 3499.90,
-    "data_coleta": "2026-08-11"
-}
+with open("dados.json", "r", encoding="utf-8") as arquivo:
+    dados = json.load(arquivo)
 
-inserir_preco(dado_teste)
+inserir_preco(dados)
